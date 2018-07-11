@@ -49,7 +49,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>归档集- 2018/7 - Hexo</title>
+<title>Hexo</title>
 
 <meta name="keywords" content="">
 
@@ -120,8 +120,10 @@
 </div>
             <div class="page-title">
     <ul>
-        <li><a href="/" data-name="Home" title="Back Home">Home</a></li>
-        <li><a href="/tags" data-name="Tag Cloud" title="Tag Cloud">Tags</a></li>
+        <li><a href="/">最新</a></li>
+        
+        
+        
         <li class="page-search">
     <form id="search" class="search-form">
         <label for="s" class="sr-only">Input Search key Words Here</label>
@@ -163,40 +165,91 @@
 <div class="main-inner">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
-            <h3 class="post-title">坦率的讲 - 本站目前共计2篇文章</h3>
-        </div>
-        <p><img src="/images/category-bg.jpg" alt="category-bg"></p>
-        <div class="post-content markdown-body" itemprop="articleBody">
-            <div class="archives">
-                
-                
-                
-                
-                
-                <div class="archives-item">
-                    <h2>2018年07月</h2>
-                    <ul class="archives_list">
-                        
-                        <li>11日23:31:16
-                            <a href="/2018/07/11/测试/"></a>
-                        </li>
-                        
-                
-                
-                
-                        <li>11日22:46:30
-                            <a href="/2018/07/11/hello-world/">Hello World</a>
-                        </li>
-                        
-                    </ul>
-                </div>
-                
-                
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="" target="_blank">
+                    <img width="48" src="" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="" target="_blank"></a>
+                    <span title="最后编辑于2018-07-11">2018-07-11</span>
+                </p>
+                <p></p>
+            </div>
+            <h2 class="post-title"></h2>
+            <div class="post-meta">
+                本文总共1586个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
-    </article>
-</div>
+        <div class="post-content markdown-body">
+            <p>﻿﻿—<br>title: 测试<br>date: 2018-07-11 23:31:16</p>
+<h2 id="tags-android"><a href="#tags-android" class="headerlink" title="tags: android"></a>tags: android</h2><p>#Activity启动过程</p>
+<ul>
+<li>startActivity -&gt;</li>
+<li>startActivityForResult-&gt;<blockquote>
+<p>mMainThread.getApplicationThread(),它的类型是ApplicationThread,ApplicationThread是ActivityThread的一个内部类</p>
+</blockquote>
+</li>
+<li><p>Instrumentation.ActivityResult.execStartActivity()-&gt;</p>
+<blockquote>
+<p><code>ActivityManagerService</code>继承自<code>ActivityManagerNative</code>，而<code>ActivityManagerNative</code>继承自<code>binder</code>并实现了<code>IActivityManager</code>这个Binder接口,因此AMS也是一个binder，它是<code>IActivityManager</code>的具体实现</p>
+</blockquote>
+</li>
+<li><p>ActivityManagerNative.getDefault().startActivity()-&gt;</p>
+<blockquote>
+<p>ActivityManagerNative.getDefault()会通过create创建AMS这个Binder对象</p>
+</blockquote>
+</li>
+<li>AMS启动Activity：startActivity</li>
+<li><code>ActivityStackSupervisor</code>.startActivityMayWait()-&gt;</li>
+<li><code>ActivityStackSupervisor</code>.startActivityLocked</li>
+<li><code>ActivityStackSupervisor</code>.startActivityUncheckedLocked<blockquote>
+<p>由ActivityStackSupervisor转移到ActivityStack</p>
+</blockquote>
+</li>
+<li><code>ActivtyStack</code>.resumeTopActivitiesLocked</li>
+<li><code>ActivtyStack</code>.resumeTopActivityInnerLocked()</li>
+<li><code>ActivityStackSupervisor</code>.startSpecificActivityLocked()</li>
+<li><p><code>ActivityStackSupervisor</code>.realStartActivityLocked()</p>
+<blockquote>
+<p>app.thread的类型是IApplicationThread,IApplicationThread是一个Binder类型的接口，实现者是ActivityThread的内部类ApplicationThread。ApplicationThread继承了ApplicationThreadNative,而ApplicationThreadNative继承了Binder并实现了IApplicationThread接口。</p>
+</blockquote>
+</li>
+<li><p>app.thread.scheduleLaunchActivity()</p>
+<blockquote>
+<p>回到ApplicationThread中</p>
+</blockquote>
+</li>
+<li>ApplicationThread.scheduleLaunchActivity()</li>
+<li>发送一个启动Actiivty的消息给Handler处理（H），sendMessage(H.LAUNCH_ACTIVITY,r)</li>
+<li>Handler(H)对消息进行处理LAUNCH_ACTIVITY</li>
+<li><p>ActivityThread.handleLaunchActivity()</p>
+<blockquote>
+<p>performLaunchActivity(r,customIntent)主要完成了这几件事：<br>1, 从ActivityClientRecord中获取🤓</p>
+</blockquote>
+</li>
+<li><p>performLaunchActivity()完成对Activity对象的创建和启动</p>
+</li>
+<li>ActivityThread.handleResumeActivity()启动Activity的onResume()生命周期方法</li>
+</ul>
 
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+        </div>
+        
+    </article>
+    
+    <p>本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
